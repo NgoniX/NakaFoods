@@ -1,0 +1,40 @@
+<ion-menu [content]="content" type="overlay">
+    <ion-header>
+        <ion-toolbar color="primary">
+            <ion-title>Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+
+        <div align="center">
+            <img src="assets/imgs/logo.jpg" class="user_icon" alt="">
+        </div>
+
+        <ion-list>
+            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon item-start [name]="p.icon"></ion-icon>
+        {{p.title}}
+      </button>
+        </ion-list>
+
+        <ion-list *ngIf="auth.authenticated">
+            <button menuClose ion-item (click)="logout()">
+        <ion-icon item-start name="log-out"></ion-icon>
+        Log Out
+      </button>
+        </ion-list>
+
+        <ion-list *ngIf="!auth.authenticated">
+            <button menuClose ion-item (click)="login()">
+        <ion-icon item-start name="log-in"></ion-icon>
+        Log In
+      </button>
+        </ion-list>
+
+    </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

@@ -1,0 +1,7 @@
+{
+  "name": "Poultry",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
