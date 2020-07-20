@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>
+            Naka Services
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row *ngFor="let i of serviceRows">
+            <ion-col *ngFor="let service of services | slice:(i*2):(i+1)*2" width-50>
+                <ion-card>
+                    <img src="{{service.thumb}}" alt="" />
+                    <ion-card-content>
+                        <p>
+                            <button ion-button full solid>{{ service.name }}</button>
+                        </p>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

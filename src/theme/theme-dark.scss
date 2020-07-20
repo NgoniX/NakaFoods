@@ -1,0 +1,27 @@
+.dark-theme {
+    ion-card-title,
+    .q-number,
+    .quantity,
+    .toolbar-title {
+        color: #ffffff;
+    }
+    ion-header .toolbar-background {
+        border-color: #ffffff;
+        background-color: #333333;
+    }
+    .item-md,
+    .content-md,
+    .scroll-content {
+        background-color: #333333;
+        color: #fff;
+    }
+    ion-grid,
+    .prod-text,
+    ion-card,
+    ion-card-content button {
+        background-color: #333333;
+    }
+    ion-card-content button {
+        border: 1px solid #fff;
+    }
+}
