@@ -1,42 +1,43 @@
 <ion-header>
-    <ion-navbar color="primary">
-        <button ion-button menuToggle>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-        <ion-title>Naka Foods</ion-title>
+    <ion-title>Naka Foods</ion-title>
 
-        <ion-buttons end>
-            <button ion-button icon-only (click)="goToCart()">
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goToCart()">
         <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
       </button>
-        </ion-buttons>
-
-    </ion-navbar>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <ion-slides *ngIf="promoImagesLoaded" autoplay=3000 slidesPerView=1>
-        <ion-slide *ngFor="let promo of promoSliders">
-            <img src="{{promo.name}}" alt="">
-        </ion-slide>
+  <ion-slides *ngIf="promoImagesLoaded" autoplay="3000" slidesPerView="1">
+    <ion-slide *ngFor="let promo of promoSliders">
+      <img src="{{promo.name}}" alt="" />
+    </ion-slide>
+  </ion-slides>
 
-    </ion-slides>
+  <div class="prod-text">Product Selection</div>
 
-    <div class="prod-text">Product Selection</div>
-
-    <ion-grid>
-        <ion-row *ngFor="let i of categoryRows">
-            <ion-col *ngFor="let category of categories | slice:(i*2):(i+1)*2" width-50 (click)="showDetails(category)">
-                <ion-card>
-                    <img src="{{category.thumb}}" alt="">
-                    <ion-card-content>
-                        <p>
-                            <button ion-button full solid>{{ category.name }}</button>
-                        </p>
-                    </ion-card-content>
-                </ion-card>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-
+  <ion-grid>
+    <ion-row *ngFor="let i of categoryRows">
+      <ion-col
+        *ngFor="let category of categories | slice:(i*2):(i+1)*2"
+        width-50
+        (click)="showDetails(category)"
+      >
+        <ion-card>
+          <img src="{{category.thumb}}" alt="" />
+          <ion-card-content>
+            <p>
+              <button ion-button full solid>{{ category.name }}</button>
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

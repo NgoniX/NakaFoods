@@ -25,7 +25,7 @@ import { CartProvider } from "../providers/cart/cart";
 import { CategoryProvider } from "../providers/category/category";
 import { OrderProvider } from "../providers/order/order";
 import { ServicesProvider } from "../providers/services/services";
-import { SettingsProvider } from '../providers/settings/settings';
+import { SettingsProvider } from "../providers/settings/settings";
 
 firebase.initializeApp(config.firebasConfig);
 
@@ -37,14 +37,14 @@ firebase.initializeApp(config.firebasConfig);
     CartPage,
     LoginPage,
     ContactPage,
-    AboutPage
+    AboutPage,
   ],
   imports: [
     BrowserModule,
     AngularFireAuthModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    AngularFireModule.initializeApp(config.firebasConfig)
+    AngularFireModule.initializeApp(config.firebasConfig),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -54,7 +54,7 @@ firebase.initializeApp(config.firebasConfig);
     ServicesPage,
     LoginPage,
     ContactPage,
-    AboutPage
+    AboutPage,
   ],
   providers: [
     StatusBar,
@@ -66,7 +66,7 @@ firebase.initializeApp(config.firebasConfig);
     CategoryProvider,
     OrderProvider,
     ServicesProvider,
-    SettingsProvider
-  ]
+    SettingsProvider,
+  ],
 })
 export class AppModule {}

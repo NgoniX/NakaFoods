@@ -1,12 +1,14 @@
+import { CheckoutPage } from "./../checkout/checkout";
 import { Component } from "@angular/core";
 import { IonicPage, NavController } from "ionic-angular";
 import { AuthProvider } from "../../providers/auth/auth";
 import { HomePage } from "../home/home";
+import { LoginPage } from "../login/login";
 
 @IonicPage()
 @Component({
   selector: "page-register",
-  templateUrl: "register.html"
+  templateUrl: "register.html",
 })
 export class RegisterPage {
   name: any;
@@ -25,16 +27,16 @@ export class RegisterPage {
       name: this.name,
       address: this.address,
       email: this.email,
-      password: this.password
+      password: this.password,
     };
 
     this.AuthService.registerUser(userObj)
       .then((response: any) => {
         if (response.success == true) {
-          this.navCtrl.push('CheckoutPage');
+          this.navCtrl.push(CheckoutPage);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         alert(JSON.stringify(err));
       });
   }
@@ -45,6 +47,6 @@ export class RegisterPage {
   }
 
   showLoginPage() {
-    this.navCtrl.push("LoginPage");
+    this.navCtrl.push(LoginPage);
   }
 }
