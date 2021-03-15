@@ -12,7 +12,7 @@
 <ion-content padding>
     <ion-grid>
         <ion-row *ngFor="let i of serviceRows">
-            <ion-col *ngFor="let service of services | slice:(i*2):(i+1)*2" width-50>
+            <ion-col *ngFor="let service of services | slice:(i*2):(i+1)*2" width-50 (click)="showList(service)">
                 <ion-card>
                     <img src="{{service.thumb}}" alt="" />
                     <ion-card-content>

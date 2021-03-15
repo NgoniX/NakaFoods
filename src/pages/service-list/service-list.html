@@ -1,0 +1,115 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>
+            {{ serviceName }}
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <!-- if user is logged in -->
+
+    <div *ngIf="auth.authenticated">
+        <!-- For when user clicks logistics -->
+        <div *ngIf="serviceID == '-LVvv_9002_FresH_59tr'; else elseTemplate">
+
+            <ion-list>
+                <form novalidate (ngSubmit)="onSubmit()" [formGroup]="logisticForm">
+                    <ion-item>
+                        <ion-label floating>Name </ion-label>
+                        <ion-input type="text" formControlName="name"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label floating>Email</ion-label>
+                        <ion-input type="text" formControlName="email"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label floating>Message</ion-label>
+                        <ion-textarea formControlName="message" id="message" rows="3" maxlength="500"></ion-textarea>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label floating>Weight & size of package </ion-label>
+                        <ion-input type="text" formControlName="weightSize"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label text-wrap class="terms">
+                            I hereby verify items in the package are what I have stated to the best of my knowledge & I accept liability in the event of seizure/inspection by authorities for any reason & NF courier are merely delivery drivers & not handlers.
+                        </ion-label>
+                        <ion-checkbox formControlName="accept">
+
+                        </ion-checkbox>
+                    </ion-item>
+
+                    <button type="submit" ion-button block color="primary" [disabled]="checkValid()">
+                      SEND
+                  </button>
+                </form>
+            </ion-list>
+
+        </div>
+
+        <ng-template #elseTemplate>
+
+            <div *ngIf="isEmpty" class="empty">
+                <div class="empty-results">
+                    <p text-center>
+                        No Services Found
+                    </p>
+                </div>
+            </div>
+
+            <ion-list>
+                <button ion-item *ngFor="let s of services" (click)="showInfo(s)" detail-none>
+                    <ion-icon name="arrow-forward" item-left></ion-icon>
+                    <h2>{{ s.name }}</h2>
+                </button>
+            </ion-list>
+
+        </ng-template>
+
+    </div>
+
+    <!-- if user is not logged in -->
+    <div *ngIf="!auth.authenticated">
+        <!-- For when user clicks logistics -->
+        <div *ngIf="serviceID == '-LVvv_9002_FresH_59tr' ; else elseTemplate2">
+
+            <!-- Please login -->
+            <div class="empty">
+                <div class="empty-results">
+                    <p text-center>
+                        Please login to fill logistics form
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <ng-template #elseTemplate2>
+            <div class="margin-space">
+
+                <!-- No data shows when their is no product data available -->
+                <div *ngIf="isEmpty" class="empty">
+                    <div class="empty-results">
+                        <p text-center>
+                            No Services Found
+                        </p>
+                    </div>
+                </div>
+
+                <ion-list>
+                    <button ion-item *ngFor="let s of services" (click)="showInfo(s)" detail-none>
+                    <ion-icon name="arrow-forward" item-left></ion-icon>
+                    <h2>{{ s.name }}</h2>
+                </button>
+                </ion-list>
+            </div>
+        </ng-template>
+    </div>
+
+
+</ion-content>

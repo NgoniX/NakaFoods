@@ -48,7 +48,10 @@ export class CartPage {
         this.isCartItemLoaded = true;
         loader.dismiss();
       })
-      .catch(err => { });
+      .catch(err => { 
+        loader.dismiss();
+        console.log(err); 
+      });
   }
 
   checkOut() {

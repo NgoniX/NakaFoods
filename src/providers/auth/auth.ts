@@ -51,6 +51,11 @@ export class AuthProvider {
     return promise;
   }
 
+  // get current logged user email
+  get getUserEmail(): string {
+    return firebase.auth().currentUser !== null ? firebase.auth().currentUser.email : '';
+  }
+
   getuserdetails() {
     var promise = new Promise((resolve, reject) => {
       this.firedata.child(firebase.auth().currentUser.uid).once('value', (snapshot) => {

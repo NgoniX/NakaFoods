@@ -1,0 +1,22 @@
+page-service-list {
+    .terms {
+        font-size: 12px;
+    }
+    .empty {
+        margin-top: 50%;
+        height: 100%;
+        .empty-results {
+            ion-icon {
+                font-size: 105px;
+                color: rgb(175, 175, 175);
+            }
+            p {
+                font-size: 30px;
+                color: rgb(175, 175, 175);
+            }
+        }
+    }
+    .list_img {
+        width: 10% !important;
+    }
+}

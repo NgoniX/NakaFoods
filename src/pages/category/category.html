@@ -7,7 +7,7 @@
             {{ categoryName }}
         </ion-title>
     </ion-navbar>
-
+    <ion-searchbar placeholder="Search filter" [(ngModel)]="term"></ion-searchbar>
 </ion-header>
 
 <ion-content class="dark">
@@ -22,7 +22,7 @@
 
     <ion-grid>
         <ion-row *ngFor="let i of productRows">
-            <ion-col *ngFor="let product of products | slice:(i*2):(i+1)*2" width-50 (click)="showDetails(product)">
+            <ion-col *ngFor="let product of products | slice:(i*2):(i+1)*2 | filter:term" width-50 (click)="showDetails(product)">
                 <ion-card>
                     <ion-card-title>{{ product.name }}</ion-card-title>
                     <img src="{{product.thumb}}" alt="">

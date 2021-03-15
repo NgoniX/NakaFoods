@@ -53,7 +53,7 @@ export class CheckoutPage {
         }
         loader.dismiss();
       })
-      .catch(err => { });
+      .catch(err => { loader.dismiss(); });
   }
 
   ionViewDidLoad() {

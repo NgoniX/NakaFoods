@@ -1,0 +1,142 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Send {{ serviceName }} Request</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <!-- if user is logged in -->
+
+    <div *ngIf="auth.authenticated">
+        <!-- For when user clicks logistics -->
+        <div *ngIf="serviceName == 'Purchases' || serviceName == 'Hire'; else elseTemplate">
+
+            <ion-list>
+                <form (ngSubmit)="add_service(serviceForm)" #serviceForm="ngForm">
+
+                    <ion-item>
+                        <ion-label>Service Type</ion-label>
+                        <ion-select name="serviceType" [(ngModel)]="serviceData.serviceType" required>
+                            <ion-option value=""></ion-option>
+                            <ion-option value="Personal">Personal</ion-option>
+                            <ion-option value="Commercial">Commercial</ion-option>
+                        </ion-select>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label floating>Name </ion-label>
+                        <ion-input type="text" [(ngModel)]="serviceData.name" name="name" required></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label floating>Email</ion-label>
+                        <ion-input type="email" name="email" [(ngModel)]="serviceData.email" email #prmEmail="ngModel" required></ion-input>
+                        <div *ngIf="prmEmail.errors?.email">
+                            Email not valid.
+                        </div>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label floating>Message</ion-label>
+                        <ion-textarea name="message" [(ngModel)]="serviceData.message" id="message" rows="3" maxlength="500" required></ion-textarea>
+                    </ion-item>
+
+                    <div *ngIf="serviceName == 'Hire'">
+                        <ion-item>
+                            <ion-label>City</ion-label>
+                            <ion-select [(ngModel)]="serviceData.cities" name="cities" required>
+                                <ion-option value=""></ion-option>
+                                <ion-option value="Harare">Harare</ion-option>
+                                <ion-option value="Bulawayo">Bulawayo</ion-option>
+                                <ion-option value="Gweru">Gweru</ion-option>
+                                <ion-option value="Mutare">Mutare</ion-option>
+                                <ion-option value="Kwekwe">Kwekwe</ion-option>
+                                <ion-option value="Masvingo">Masvingo</ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </div>
+
+                    <div *ngIf="serviceName == 'Hire'">
+                        <ion-list radio-group name="zimLicense" [(ngModel)]="serviceData.zimLicense" required>
+
+                            <ion-list-header>
+                                Do you have a Zimbabwean license?
+                            </ion-list-header>
+
+                            <ion-item>
+                                <ion-label>Yes</ion-label>
+                                <ion-radio value="Yes"></ion-radio>
+                            </ion-item>
+
+                            <ion-item>
+                                <ion-label>No</ion-label>
+                                <ion-radio value="No"></ion-radio>
+                            </ion-item>
+
+                        </ion-list>
+                    </div>
+
+                    <div *ngIf="serviceName == 'Hire'">
+                        <ion-item>
+                            <ion-label>Select Photo</ion-label>
+                            <ion-icon name="camera" (click)="presentActionSheet()" item-right></ion-icon>
+                        </ion-item>
+                        <img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">
+                        <h5 align="center" [hidden]="lastImage !== null" class="preview_text">Photo Preview</h5>
+                    </div>
+
+
+                    <button type="submit" ion-button block color="primary" [disabled]="serviceForm.invalid">
+                      SEND
+                  </button>
+                </form>
+            </ion-list>
+
+        </div>
+
+        <ng-template #elseTemplate>
+
+            <div class="empty">
+                <div class="empty-results">
+                    <p class="service-heading" text-center>
+                        No Services Info
+                    </p>
+                </div>
+            </div>
+        </ng-template>
+
+    </div>
+
+    <!-- if user is not logged in -->
+    <div *ngIf="!auth.authenticated">
+        <!-- For when user clicks logistics -->
+        <div *ngIf="serviceName == 'Purchases' || serviceName == 'Hire' ; else elseTemplate2">
+
+            <!-- Please login -->
+            <div class="empty">
+                <div class="empty-results">
+                    <p text-center>
+                        Please login to purchase or hire
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <ng-template #elseTemplate2>
+            <div class="margin-space">
+
+                <!-- No data shows when their is no product data available -->
+                <div class="empty">
+                    <div class="empty-results">
+                        <p text-center>
+                            Nothing Found
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+
+
+</ion-content>
