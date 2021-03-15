@@ -14,6 +14,11 @@ import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
 import { IonicStorageModule } from "@ionic/storage";
 
+import { File } from "@ionic-native/file";
+import { FileTransfer } from "@ionic-native/file-transfer";
+import { FilePath } from "@ionic-native/file-path";
+import { Camera } from "@ionic-native/camera";
+
 import { AngularFireModule } from "@angular/fire";
 
 import { config } from "./../config/app.config";
@@ -26,6 +31,11 @@ import { CategoryProvider } from "../providers/category/category";
 import { OrderProvider } from "../providers/order/order";
 import { ServicesProvider } from "../providers/services/services";
 import { SettingsProvider } from "../providers/settings/settings";
+import { ServiceListProvider } from '../providers/service-list/service-list';
+import { AddLogisticsProvider } from '../providers/add-logistics/add-logistics';
+import { HttpClientModule } from '@angular/common/http';
+import { AddPurchasesProvider } from '../providers/add-purchases/add-purchases';
+
 
 firebase.initializeApp(config.firebasConfig);
 
@@ -41,6 +51,7 @@ firebase.initializeApp(config.firebasConfig);
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AngularFireAuthModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
@@ -61,12 +72,19 @@ firebase.initializeApp(config.firebasConfig);
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ProductsProvider,
+    File,
+    FileTransfer,
+    Camera,
+    FilePath,
     AuthProvider,
     CartProvider,
     CategoryProvider,
     OrderProvider,
     ServicesProvider,
     SettingsProvider,
+    ServiceListProvider,
+    AddLogisticsProvider,
+    AddPurchasesProvider,
   ],
 })
 export class AppModule {}

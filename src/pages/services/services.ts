@@ -4,12 +4,12 @@ import {
   NavController,
   NavParams,
   LoadingController,
-  Events
+  Events,
 } from "ionic-angular";
 
 @Component({
   selector: "page-services",
-  templateUrl: "services.html"
+  templateUrl: "services.html",
 })
 export class ServicesPage {
   services: any[];
@@ -35,7 +35,7 @@ export class ServicesPage {
 
   loadServices() {
     let loader = this.loadingCtrl.create({
-      content: "Loading Services.."
+      content: "Loading Services..",
     });
     loader.present();
 
@@ -47,5 +47,9 @@ export class ServicesPage {
       );
       loader.dismiss();
     });
+  }
+
+  showList(service) {
+    this.navCtrl.push("ServiceListPage", { service: service });
   }
 }

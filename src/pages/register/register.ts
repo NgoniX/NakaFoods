@@ -1,6 +1,5 @@
-import { CheckoutPage } from "./../checkout/checkout";
 import { Component } from "@angular/core";
-import { IonicPage, NavController } from "ionic-angular";
+import { AlertController, IonicPage, LoadingController, NavController } from "ionic-angular";
 import { AuthProvider } from "../../providers/auth/auth";
 import { HomePage } from "../home/home";
 import { LoginPage } from "../login/login";
@@ -17,12 +16,20 @@ export class RegisterPage {
   password: any;
   constructor(
     public navCtrl: NavController,
+    private loadingCtrl: LoadingController, 
+    private alertCtrl: AlertController,
     public AuthService: AuthProvider
   ) {}
 
   ionViewDidLoad() {}
 
   register() {
+
+    let loader = this.loadingCtrl.create({
+      content: 'Registering..'
+    });
+    loader.present();
+
     var userObj = {
       name: this.name,
       address: this.address,
@@ -32,13 +39,24 @@ export class RegisterPage {
 
     this.AuthService.registerUser(userObj)
       .then((response: any) => {
+        loader.dismiss();
         if (response.success == true) {
-          this.navCtrl.push(CheckoutPage);
+          this.navCtrl.push(HomePage);
         }
       })
       .catch((err) => {
-        alert(JSON.stringify(err));
+        loader.dismiss();
+        this.presentAlert("Registration Failed. Try Again");
       });
+  }
+
+  presentAlert(message) {
+    let alert = this.alertCtrl.create({
+      title: 'Error',
+      subTitle: message,
+      buttons: ['Close']
+    });
+    alert.present();
   }
 
   // Go back to previous component

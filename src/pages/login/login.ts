@@ -29,10 +29,10 @@ export class LoginPage {
 
     this.authService.login(loginParams).then((res) => {
       loader.dismiss();
-      this.navCtrl.push('CheckoutPage');
+      this.navCtrl.setRoot(HomePage);
     }).catch((err) => {
       loader.dismiss();
-      this.presentAlert(err.message);
+      this.presentAlert("Login Failed. Try Again");
     });
 
 
