@@ -9,4 +9,29 @@
 
 <ion-content padding>
 
+    <h4 align="center">Send us feedback</h4>
+
+    <ion-list>
+        <form novalidate (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+            <ion-item>
+                <ion-label floating>Name </ion-label>
+                <ion-input type="text" formControlName="name"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Email</ion-label>
+                <ion-input type="text" formControlName="email"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Message</ion-label>
+                <ion-textarea formControlName="message" id="message" rows="3"></ion-textarea>
+            </ion-item>
+
+            <button type="submit" ion-button block color="primary" [disabled]="checkValid()">
+              SEND
+          </button>
+        </form>
+    </ion-list>
+
 </ion-content>

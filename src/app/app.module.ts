@@ -9,6 +9,7 @@ import { CartPage } from "../pages/cart/cart";
 import { AboutPage } from "./../pages/about/about";
 import { ContactPage } from "./../pages/contact/contact";
 import { LoginPage } from "./../pages/login/login";
+import { DeliveryPage } from './../pages/delivery/delivery';
 
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
@@ -18,6 +19,7 @@ import { File } from "@ionic-native/file";
 import { FileTransfer } from "@ionic-native/file-transfer";
 import { FilePath } from "@ionic-native/file-path";
 import { Camera } from "@ionic-native/camera";
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { AngularFireModule } from "@angular/fire";
 
@@ -35,6 +37,8 @@ import { ServiceListProvider } from '../providers/service-list/service-list';
 import { AddLogisticsProvider } from '../providers/add-logistics/add-logistics';
 import { HttpClientModule } from '@angular/common/http';
 import { AddPurchasesProvider } from '../providers/add-purchases/add-purchases';
+import { ContactProvider } from '../providers/contact/contact';
+import { CalculateProvider } from '../providers/calculate/calculate';
 
 
 firebase.initializeApp(config.firebasConfig);
@@ -45,6 +49,7 @@ firebase.initializeApp(config.firebasConfig);
     HomePage,
     ServicesPage,
     CartPage,
+    DeliveryPage,
     LoginPage,
     ContactPage,
     AboutPage,
@@ -62,6 +67,7 @@ firebase.initializeApp(config.firebasConfig);
     MyApp,
     HomePage,
     CartPage,
+    DeliveryPage,
     ServicesPage,
     LoginPage,
     ContactPage,
@@ -76,6 +82,7 @@ firebase.initializeApp(config.firebasConfig);
     FileTransfer,
     Camera,
     FilePath,
+    Geolocation,
     AuthProvider,
     CartProvider,
     CategoryProvider,
@@ -85,6 +92,8 @@ firebase.initializeApp(config.firebasConfig);
     ServiceListProvider,
     AddLogisticsProvider,
     AddPurchasesProvider,
+    ContactProvider,
+    CalculateProvider,
   ],
 })
 export class AppModule {}

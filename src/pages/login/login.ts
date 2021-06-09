@@ -22,6 +22,7 @@ export class LoginPage {
       content: 'Authenticating..'
     });
     loader.present();
+    
     let loginParams = {
       email: this.email,
       password: this.password

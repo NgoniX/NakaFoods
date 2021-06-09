@@ -1,3 +1,4 @@
+import { DeliveryPage } from './../pages/delivery/delivery';
 import { HomePage } from "./../pages/home/home";
 import { ServicesPage } from "./../pages/services/services";
 import { AuthProvider } from "./../providers/auth/auth";
@@ -58,6 +59,11 @@ export class MyApp {
         title: "Naka Services",
         component: ServicesPage,
         icon: "people",
+      },
+      {
+        title: "Deliveries",
+        component: DeliveryPage,
+        icon: "md-car",
       },
       { title: "Contact Us", component: ContactPage, icon: "contact" },
       { title: "About Us", component: AboutPage, icon: "information-circle" },
